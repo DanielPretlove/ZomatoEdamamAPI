@@ -1,0 +1,259 @@
+html body {
+  background-color: rgb(17, 17, 17);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin-top: 1%;
+  border: 2px solid grey;
+}
+
+
+.Links nav ul li {
+  display: inline-block;
+  border-right: 2px solid rgb(197, 194, 194);
+  height: 50px;
+  font-size: 22.5px;
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+}
+
+.Links nav ul li:last-child {
+  border-right: none;
+}
+
+.Links nav {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.Links nav ul {
+  list-style: none;
+}
+
+.Links nav ul li a {
+  color: rgb(197, 194, 194);
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  padding: 2px 26px;
+  border-radius: 3px;
+  transition: 0.3s ease all;
+  font-style: italic;
+}
+
+.Links nav ul li a::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 2px;
+
+  background-color: white;
+  transition: width .5s;
+}
+
+.Links nav ul li a:hover::after {
+  width: 100%;  
+  transition: width .5s;
+}
+
+.Links nav ul li a:hover {
+  color: white;
+}
+
+h2 {
+  color: rgb(197, 194, 194);
+}
+
+.Home h2 {
+  text-align: center;
+  margin-bottom: 1%;
+}
+
+.Restaurants h2 {
+  margin-left: 34.5%;
+  font-size: 200%;
+}
+
+.Search input {
+  margin-left: 34.3%;
+  margin-right: 0.5%;
+  width: 20%;
+  font-size: 20px;
+  padding: 12px 20px;
+  border: 1px solid rgb(197, 194, 194);
+  background-color: rgb(17, 17, 17);
+  color: rgb(197, 194, 194);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.Search Button {
+  background-color: rgb(17, 17, 17);
+  border: 2px solid rgb(197, 194, 194);
+  color: rgb(197, 194, 194);
+  padding: 11px 25px;
+  font-size: 20px;
+  margin: 2px 10px;
+  cursor: pointer;
+  transition-duration: 0.6s;
+}
+
+.Search Button:hover {
+  background-color: rgb(197, 194, 194);
+  border: 2px solid rgb(58, 53, 53);
+  color:  rgb(17, 17, 17);
+}
+
+.Restaurants .ag-theme-balham {
+  width: 850px;
+  height: 550px;
+  margin-left: 34%;
+}
+
+
+.Restaurants .ag-header-viewport {
+  background-color: rgb(17, 17, 17);
+  -webkit-text-fill-color: rgb(197, 194, 194);
+  font-style: italic;
+}
+
+.Restaurants .ag-center-cols-viewport {
+  background-color: rgb(17, 17, 17);
+}
+
+
+.Restaurants .ag-paging-panel {
+  background-color: rgb(17, 17, 17);
+  -webkit-text-fill-color: rgb(197, 194, 194);
+  font-style: italic;
+}
+
+
+.Meals h2 {
+  text-align: center;
+  font-size: 200%;
+  margin-top: 2%;
+}
+
+.Meals h2:nth-last-child(2) {
+  margin-right: 11%;
+}
+
+
+.Meals img {
+  margin-left: 74%;
+  margin-top: -16%;
+  max-width: 25%;
+}
+
+.Meals .ag-theme-balham {
+  width: 650px;
+  height: 510px;
+  margin-left: 34%;
+}
+
+
+.Meals .ag-header-viewport {
+  background-color: rgb(17, 17, 17);
+  -webkit-text-fill-color: rgb(197, 194, 194);
+  font-style: italic;
+}
+
+.Meals .ag-center-cols-viewport {
+  background-color: rgb(17, 17, 17);
+}
+
+
+.Meals .ag-paging-panel {
+  background-color: rgb(17, 17, 17);
+  -webkit-text-fill-color: rgb(197, 194, 194);
+  font-style: italic;
+}
+
+.Ingredients h2 {
+  text-align: center;
+  font-size: 200%;
+  margin-bottom: 2%;
+}
+
+.Ingredients h2:nth-child(3) {
+  margin-left: -11%;
+}
+
+.Ingredients img {
+  margin-left: 75%;
+  margin-top: -13%;
+  max-width: 22%;
+}
+
+
+.Ingredients .ag-theme-balham {
+  width: 650px;
+  height: 510px;
+  margin-top: -4%;
+  margin-left: 34%;
+}
+
+
+.Ingredients .ag-header-viewport {
+  background-color: rgb(17, 17, 17);
+  -webkit-text-fill-color: rgb(197, 194, 194);
+  font-style: italic;
+}
+
+.Ingredients .ag-center-cols-viewport {
+  background-color: rgb(17, 17, 17);
+}
+
+
+.Ingredients .ag-paging-panel {
+  background-color: rgb(17, 17, 17);
+  -webkit-text-fill-color: rgb(197, 194, 194);
+  font-style: italic;
+}
+
+.Nutritions h2 {
+  text-align: center;
+  font-size: 200%;
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+
+.Nutritions img {
+  margin-left: 71.5%;
+  margin-top: -6%;
+  max-width: 25%;
+}
+
+.Nutritions .ag-theme-balham {
+  width: 650px;
+  height: 640px;
+  margin-top: -1%;
+  margin-left: 34%;
+}
+
+
+.Nutritions .ag-header-viewport {
+  background-color: rgb(17, 17, 17);
+  -webkit-text-fill-color: rgb(197, 194, 194);
+  font-style: italic;
+}
+
+.Nutritions .ag-center-cols-viewport {
+  background-color: rgb(17, 17, 17);
+}
+
+
+.Nutritions .ag-paging-panel {
+  background-color: rgb(17, 17, 17);
+  -webkit-text-fill-color: rgb(197, 194, 194);
+  font-style: italic;
+}
+.Error h2 {
+  text-align: center;
+  font-size: 35px;
+  color: rgb(197, 194, 194);
+}
