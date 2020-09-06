@@ -4,23 +4,19 @@ import { useHistory } from 'react-router-dom';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import axios from 'axios';
-
-
-const API_KEY = "Bearer 272bae557b31afdb9c6309157bbe91d4";
-
+import { data } from "react-dom-factories";
 
 async function getRestaurantsFromAPI(id) {
     
-    const url = `http://localhost:3000/restaurant/${id}`;  
+    const url = `http://localhost:3000/location_details/${id}/city`;  
 
     let restaurant = await axios.get(url, {
         method: 'GET',
         headers: {
             Accept: "application/json",
-            'user-key': API_KEY
         },
     })
-    .then((res) => res.json())
+    .then((res) => res.data)
     .then((Restaurant_data) => {
         return Restaurant_data;
     });
@@ -30,14 +26,13 @@ async function getRestaurantsFromAPI(id) {
 
 function Searchbar(props) {
     const [innerSearch, setInnerSearch] = useState("");
-    const [error, setError] = useState(null);
     const history = useHistory();
     return (
         <div className = "Search">
             <input
             aria-labelledby="search-button"
             type="text"
-            placeholder = "search for city..."
+            placeholder = "search for city id....."
             name="search"
             id="search"
             value={innerSearch}
@@ -46,7 +41,9 @@ function Searchbar(props) {
             }}
             />
             <button onClick = {async (e) => {
+               if(innerSearch !== "") {
                 await props.onSearch(innerSearch);
+               }
             }}>Search</button>
             <button onClick = {(e) => {
                 setInnerSearch("");
@@ -63,32 +60,33 @@ export default function Restaurant() {
     const restaurants_body = [
         {
             headerName: "Name",
-            field: "name",
+            field: data.best_rated_restaurant.name,
             sortable: true,
             flex: 1,
         },
-        
+        {
+            headerName: "Latitude",
+            field: "latitude",
+            flex: 1,
+        },
+
+        {
+            headerName: "Longitude",
+            field: "longitude",
+            flex: 1,
+        },
+
         {
             headerName: "Address",
             field: "address",
-            sortable: true,
             flex: 1,
         },
 
         {
             headerName: "City",
             field: "city",
-            sortable: true,
             flex: 1,
         },
-
-        {
-            headerName: "Zip Code",
-            field: "zipcode",
-            sortable: true,
-            flex: 1,
-        }
-
       ];
 
 
@@ -100,9 +98,10 @@ export default function Restaurant() {
               </div>
           )
       }
+
     return (
         <div className = "Restaurants">
-            <h2>Search for Restaurant</h2>
+            <h2>Search for restaurants by location id</h2>
             <Searchbar
         /* returns a promise of id, from the API being fetched*/
         onSearch={async (id) => {
@@ -125,11 +124,11 @@ export default function Restaurant() {
           }
         }}
       />
-                
-            <h2>List of Restaurants</h2>
             <h2>{JSON.stringify(restaurant)}</h2>
+            <h2>List of Restaurants</h2>
             <div className="ag-theme-balham">
                 <AgGridReact 
+                    suppressLoadingOverlay={true}
                     columnDefs={restaurants_body}
                     rowData={[restaurant]}
                     pagination={true}

@@ -12,41 +12,28 @@ const client = zomato({
 
 
 router.use(cors({
-      origin: [
-        'http://localhost:3000',
-      ],
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      allowedHeaders: ['Content-Type', 'Authorization']
-    }))
+  origin: [
+    'http://localhost:3001/Restaurants',
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 
-router.get("/restaurant/:id", (req, res) => {
-  
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  const res_id = req.params.id;
-  client
-    .getRestaurant({ res_id })
+
+router.get('/location_details/:id/:city', (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
+
+  const id = req.params.id;
+  client.getLocationDetails({ entity_id: id, entity_type: 'city' })
     .then((response) => {
       return res.status(200).json(response);
     })
     .catch(() => {
       return res.status(500).json({
-        error: "Unable to obtain a restaurant",
+        error: "Unable to obtain a restaurant in city",
       });
-    });
-});
-
-router.get("/dailymenu/:id", (req, res) => {
-  const res_id = req.params.id;
-  client
-    .getDailyMenu({ res_id: res_id })
-    .then((response) => {
-      return res.status(200).json(response);
     })
-    .catch(() => {
-      return res.status(500).json({
-        error: "Unable to obtain a daily menu",
-      });
-    });
-});
+})
+
 
 module.exports = router;

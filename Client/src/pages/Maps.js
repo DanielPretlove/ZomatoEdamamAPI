@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {AgGridReact} from 'ag-grid-react';
 import { useHistory } from 'react-router-dom';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-
-export default function Nutritions() {
+export default function Maps() {
     const [nutritions, setNutritions] = useState([]);
     const nutrition_body = [
         {
@@ -41,15 +38,10 @@ export default function Nutritions() {
           },
       ];
     return (
-        <div className = "Nutritions">
-            <h2>Meal Nutritions</h2>
+        <div className = "GoogleMaps">
+            <h2>Restaurant Location</h2>
             <div className="ag-theme-balham">
-                <AgGridReact 
-                    columnDefs={nutrition_body}
-                    rowData={nutritions}
-                    pagination={true}
-                    paginationPageSize={50}
-                />
+                
             </div>
         </div>
     )

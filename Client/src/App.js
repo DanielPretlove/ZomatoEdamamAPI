@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './pages/Header';
 import Home from "./pages/Home";
 import Restaurant from './pages/Restaurant';
-import Meals from './pages/Meals';
-import Nutritions from './pages/Nutritions';
+import Maps from './pages/Maps';
 
 export default function App() {
   return (
@@ -20,11 +19,8 @@ export default function App() {
           <Route path = "/Restaurants">
             <Restaurant />
           </Route>
-          <Route path = "/Meals">
-            <Meals />
-          </Route>
-          <Route path = "/Nutritions">
-            <Nutritions />
+          <Route path = "/Maps">
+            <Maps />
           </Route>
         </Switch>
       </div>

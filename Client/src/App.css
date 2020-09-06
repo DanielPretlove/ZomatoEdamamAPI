@@ -123,135 +123,38 @@ h2 {
 .Restaurants .ag-center-cols-viewport {
   background-color: rgb(17, 17, 17);
 }
+.Restaurants .ag-row  {
+  background-color: rgb(17, 17, 17) !important;
+  -webkit-text-fill-color: rgb(197, 194, 194) !important;
+}
 
 
+/*  ag-layout-normal ag-overlay-loading-wrapper*/
 .Restaurants .ag-paging-panel {
   background-color: rgb(17, 17, 17);
   -webkit-text-fill-color: rgb(197, 194, 194);
   font-style: italic;
 }
 
+.ag-overlay-wrapper {
+  background-color: rgb(17, 17, 17) !important;
+  -webkit-text-fill-color: rgb(197, 194, 194) !important;
+}
 
-.Meals h2 {
+.ag-overlay-loading-center {
+  background-color: rgb(17, 17, 17) !important;
+  
+
+}
+
+
+.GoogleMaps h2 {
   text-align: center;
-  font-size: 200%;
-  margin-top: 2%;
-}
-
-.Meals h2:nth-last-child(2) {
-  margin-right: 11%;
-}
-
-
-.Meals img {
-  margin-left: 74%;
-  margin-top: -16%;
-  max-width: 25%;
-}
-
-.Meals .ag-theme-balham {
-  width: 650px;
-  height: 510px;
-  margin-left: 34%;
-}
-
-
-.Meals .ag-header-viewport {
-  background-color: rgb(17, 17, 17);
-  -webkit-text-fill-color: rgb(197, 194, 194);
-  font-style: italic;
-}
-
-.Meals .ag-center-cols-viewport {
-  background-color: rgb(17, 17, 17);
-}
-
-
-.Meals .ag-paging-panel {
-  background-color: rgb(17, 17, 17);
-  -webkit-text-fill-color: rgb(197, 194, 194);
-  font-style: italic;
-}
-
-.Ingredients h2 {
-  text-align: center;
-  font-size: 200%;
-  margin-bottom: 2%;
-}
-
-.Ingredients h2:nth-child(3) {
-  margin-left: -11%;
-}
-
-.Ingredients img {
-  margin-left: 75%;
-  margin-top: -13%;
-  max-width: 22%;
-}
-
-
-.Ingredients .ag-theme-balham {
-  width: 650px;
-  height: 510px;
-  margin-top: -4%;
-  margin-left: 34%;
-}
-
-
-.Ingredients .ag-header-viewport {
-  background-color: rgb(17, 17, 17);
-  -webkit-text-fill-color: rgb(197, 194, 194);
-  font-style: italic;
-}
-
-.Ingredients .ag-center-cols-viewport {
-  background-color: rgb(17, 17, 17);
-}
-
-
-.Ingredients .ag-paging-panel {
-  background-color: rgb(17, 17, 17);
-  -webkit-text-fill-color: rgb(197, 194, 194);
-  font-style: italic;
-}
-
-.Nutritions h2 {
-  text-align: center;
-  font-size: 200%;
+  font-size: 300%;
   margin-top: 2%;
   margin-bottom: 3%;
 }
 
-.Nutritions img {
-  margin-left: 71.5%;
-  margin-top: -6%;
-  max-width: 25%;
-}
-
-.Nutritions .ag-theme-balham {
-  width: 650px;
-  height: 640px;
-  margin-top: -1%;
-  margin-left: 34%;
-}
-
-
-.Nutritions .ag-header-viewport {
-  background-color: rgb(17, 17, 17);
-  -webkit-text-fill-color: rgb(197, 194, 194);
-  font-style: italic;
-}
-
-.Nutritions .ag-center-cols-viewport {
-  background-color: rgb(17, 17, 17);
-}
-
-
-.Nutritions .ag-paging-panel {
-  background-color: rgb(17, 17, 17);
-  -webkit-text-fill-color: rgb(197, 194, 194);
-  font-style: italic;
-}
 .Error h2 {
   text-align: center;
   font-size: 35px;

@@ -7,10 +7,10 @@ const cors = require('cors');
 const app = express();
 
 
-const EdamamRouter = require('./routes/edamam');
+const GoogleMapsRouter = require('./routes/GoogleMaps');
 const ZomatosRouter = require('./routes/zomato');
 
-app.use('/', EdamamRouter);
+app.use('/', GoogleMapsRouter);
 app.use('/', ZomatosRouter);
 
 
