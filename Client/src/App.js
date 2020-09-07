@@ -6,6 +6,7 @@ import Header from './pages/Header';
 import Home from "./pages/Home";
 import Restaurant from './pages/Restaurant';
 import Maps from './pages/Maps';
+import Error from './pages/Error';
 
 export default function App() {
   return (
@@ -21,6 +22,9 @@ export default function App() {
           </Route>
           <Route path = "/Maps">
             <Maps />
+          </Route>
+          <Route path = "/Error">
+            <Error />
           </Route>
         </Switch>
       </div>

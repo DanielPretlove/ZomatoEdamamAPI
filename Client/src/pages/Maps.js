@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {AgGridReact} from 'ag-grid-react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from "react";
 
 export default function Maps() {
-    const [nutritions, setNutritions] = useState([]);
-    const nutrition_body = [
+    const [maps, setMaps] = useState([]);
+    const map_body = [
         {
           headerName: "Total Fat",
           field: "name",

@@ -30,7 +30,8 @@ router.get('/location_details/:id/:city', (req, res) => {
     })
     .catch(() => {
       return res.status(500).json({
-        error: "Unable to obtain a restaurant in city",
+        error: true,
+        message: "Unable to obtain a list of restaurants in city"
       });
     })
 })

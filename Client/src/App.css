@@ -143,10 +143,7 @@ h2 {
 
 .ag-overlay-loading-center {
   background-color: rgb(17, 17, 17) !important;
-  
-
 }
-
 
 .GoogleMaps h2 {
   text-align: center;
@@ -159,4 +156,48 @@ h2 {
   text-align: center;
   font-size: 35px;
   color: rgb(197, 194, 194);
+}
+
+
+
+.Error nav {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.Error nav ul {
+  list-style: none;
+}
+
+.Error nav ul li a {
+  color: rgb(197, 194, 194);
+  margin-left: 28%;
+  margin-right: 28%;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  padding: 2px 26px;
+  border-radius: 3px;
+  transition: 0.2s ease all;
+  font-size: 200%;
+}
+
+.Error nav ul li a::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 2px;
+
+  background-color: white;
+  transition: width .5s;
+}
+
+.Error nav ul li a:hover::after {
+  width: 100%;  
+  transition: width .5s;
+}
+
+.Error nav ul li a:hover {
+  color: white;
 }
