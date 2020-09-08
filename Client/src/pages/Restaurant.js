@@ -3,28 +3,25 @@ import { AgGridReact } from 'ag-grid-react';
 import { useHistory } from 'react-router-dom';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import axios from 'axios';
 
-async function getRestaurantsFromAPI(id) {
+export async function getRestaurantsFromAPI(id) {
 
     const url = `http://localhost:3000/location_details/${id}/city`;
 
-        let restaurant = await axios.get(url, {
-            method: 'GET',
-            headers: {
-                Accept: "application/json",
-            },
+    let restaurant = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+        .then(res => res.json())
+        .then(response => {
+            return response
         })
-            .then((res) => res.data)
-            .then((Restaurant_data) => {
-                return Restaurant_data;
-            })
-          .catch((err) => {
-            if(err.response) {
-                console.log(err.response.data);
-            }
-        })
-        return restaurant;
+
+    console.log(restaurant);
+
+    return restaurant;
 }
 
 
@@ -62,7 +59,7 @@ function Searchbar(props) {
 
 export default function Restaurant() {
     const [restaurant, setRestaruant] = useState({});
-    const [error, setError] = useState("");
+    const [error, setError] = useState(null);
     const history = useHistory();
 
 
@@ -85,7 +82,7 @@ export default function Restaurant() {
         },
         {
             headerName: "Latitude",
-            field: "location.latitude",
+            field: "latitude",
             flex: 1,
             sortable: true,
         },
@@ -144,6 +141,7 @@ export default function Restaurant() {
                     suppressLoadingOverlay={true}
                     columnDefs={restaurants_body}
                     rowData={restaurants_list}
+                    onRowClicked={row => history.push(`/Maps`)}
                     pagination={true}
                     paginationPageSize={50}
                 />

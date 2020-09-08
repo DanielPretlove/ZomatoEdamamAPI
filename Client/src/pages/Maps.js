@@ -1,46 +1,47 @@
 import React, { useState } from "react";
+import {getRestaurantsFromAPI} from "./Restaurant";
+import {GoogleMap, LoadScript} from "@react-google-maps/api";
+
+
+export function Map_Data(props) {
+  const [mapData, SetMapData] = useState("");
+
+  return(
+    <div className = "MapData">
+      <h2>{props.getRestaurantsFromAPI} Location</h2>
+    </div>
+  )
+}
 
 export default function Maps() {
-    const [maps, setMaps] = useState([]);
+  const [id, setID] = useState("");
+  const {maps} = getRestaurantsFromAPI(id);
+
     const map_body = [
         {
-          headerName: "Total Fat",
+          headerName: "Name",
           field: "name",
           sortable: true,
           flex: 1,
         },
     
         {
-          headerName: "Cholesterol",
-          field: "symbol",
+          headerName: "Address",
+          field: "address",
           sortable: true,
           flex: 1,
         },
         {
-          headerName: "Sodium",
-          field: "industry",
+          headerName: "City",
+          field: "city",
           sortable: true,
           flex: 1,
         },
-        {
-            headerName: "Total Carboydrates",
-            field: "industry",
-            sortable: true,
-            flex: 1,
-          },
-          {
-            headerName: "Protein",
-            field: "industry",
-            sortable: true,
-            flex: 1,
-          },
       ];
     return (
         <div className = "GoogleMaps">
-            <h2>Restaurant Location</h2>
-            <div className="ag-theme-balham">
-                
-            </div>
+            <Map_Data />
+            
         </div>
     )
 }

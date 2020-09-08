@@ -5,13 +5,7 @@ const cors = require('cors');
 
 const GoogleMapsAPI = `AIzaSyDb1D4RL292JnliF9H5BfR7TxTtN1XZIxo`;
 
-router.use(cors({
-  origin: [
-    'http://localhost:3001/Maps',
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}))
+
 
 
 router.get('/place/:query', async (req, res) => {
@@ -36,10 +30,8 @@ router.get('/place/:query', async (req, res) => {
     .catch((err) => {
       return res.status(500).json({
         error: 'The specified URL was not found or couldn’t be retrieved'
-    });
+      });
     })
 })
-
-
 
 module.exports = router;

@@ -11,15 +11,6 @@ const client = zomato({
 });
 
 
-router.use(cors({
-  origin: [
-    'http://localhost:3001/Restaurants',
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}))
-
-
 router.get('/location_details/:id/:city', (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
 
@@ -29,9 +20,10 @@ router.get('/location_details/:id/:city', (req, res) => {
       return res.status(200).json(response);
     })
     .catch(() => {
-      return res.status(500).json({
+      return res.status(403).json({
         error: true,
-        message: "Unable to obtain a list of restaurants in city"
+        message: "Unable to obtain a restaurant in city",
+
       });
     })
 })
