@@ -65,11 +65,11 @@ const Maps = observer((props) => {
           flex: 1,
         },
       ];
-      console.log(toJS(props.store.restraunts).best_rated_restaurant);
+      console.log(toJS(props.store.restaurants));
     return (
         <div className = "GoogleMaps">
 
-            <h2>{toJS(props.store.restraunts).popularity}Location</h2>
+            <h2>{toJS(props.store.restaurants).popularity}Location</h2>
         </div>
     )
 });

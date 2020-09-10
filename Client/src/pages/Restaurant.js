@@ -21,7 +21,6 @@ export async function getRestaurantsFromAPI(id) {
             return response
         })
 
-    console.log(restaurant);
 
     return restaurant;
 }
@@ -135,17 +134,14 @@ const Restaurant = observer((props) => {
                     }
 
                     else {
-                        props.store.restraunts = restaurants_data;
+                        props.store.restaurants = restaurants_data;
                         //globalState.restaurants = restaurants_data;
                     
-                        const tempData = toJS(props.store.restraunts)?.best_rated_restaurant?.map((rest) => {
+                        const tempData = toJS(props.store.restaurants)?.best_rated_restaurant?.map((rest) => {
                             return rest.restaurant;
                         });
 
                         setRestaruant(tempData);
-                        //DEBUG
-                        console.log('REEEE')
-                        console.log(restaurants_list)
                     }
                 }}
             />
@@ -167,96 +163,3 @@ const Restaurant = observer((props) => {
 });
 
 export default Restaurant; 
-
-/*export default function observer(Restaurant() {
-    const [restaurant, setRestaruant] = useState({});
-    const [error, setError] = useState(null);
-    const history = useHistory();
-
-
-    const restaurants_list = restaurant?.best_rated_restaurant?.map((rest) => {
-        return rest.restaurant;
-    });
-    const restaurants_body = [
-        {
-            headerName: "Restaurant ID",
-            field: "id",
-            flex: 1,
-            sortable: true,
-        },
-
-        {
-            headerName: "Name",
-            field: "name",
-            flex: 1,
-            sortable: true,
-        },
-        {
-            headerName: "Latitude",
-            field: "latitude",
-            flex: 1,
-            sortable: true,
-        },
-
-        {
-            headerName: "Longitude",
-            field: "location.longitude",
-            flex: 1,
-        },
-
-        {
-            headerName: "Address",
-            field: "location.address",
-            flex: 1,
-        },
-
-        {
-            headerName: "City",
-            field: "location.city",
-            flex: 1,
-        },
-    ];
-
-
-    if (error) {
-        return (
-            <div className="Error">
-                <h2>{history.push("/Error")}</h2>
-            </div>
-        )
-    }
-
-    return (
-        <div className="Restaurants">
-            <h2>Search for restaurants by location id</h2>
-            <Searchbar
-                /* returns a promise of id, from the API being fetched*/
- /*               onSearch={async (id) => {
-                    /* awaits for the id data to be called */
-   /*                 let restaurants_data = await getRestaurantsFromAPI(id).catch((e) =>
-                        setError(e)
-                    );
-                    /* error handling conditions */
-     /*               if (id === "") {
-                        setError("The ID is empty");
-                    }
-
-                    else {
-                        setRestaruant(restaurants_data)
-                    }
-                }}
-            />
-            <h2>List of Restaurants</h2>
-            <div className="ag-theme-balham">
-                <AgGridReact
-                    suppressLoadingOverlay={true}
-                    columnDefs={restaurants_body}
-                    rowData={restaurants_list}
-                    onRowClicked={row => history.push(`/Maps`)}
-                    pagination={true}
-                    paginationPageSize={50}
-                />
-            </div>
-        </div>
-    )
-}*/
