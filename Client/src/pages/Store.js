@@ -1,5 +1,4 @@
-const { observable } = require("mobx");
-
+import {observable} from 'mobx'
 
 /*
 *       This store object is assigned as a observable type, observables allow us to store ANY value, (usaully object) inside of the function.

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import {getRestaurantsFromAPI} from "./Restaurant";
 import {GoogleMap, LoadScript} from "@react-google-maps/api";
 import { useParams, useHistory } from "react-router-dom";
 
@@ -65,11 +64,13 @@ const Maps = observer((props) => {
           flex: 1,
         },
       ];
-      console.log(toJS(props.store.restaurants));
+      const selectedRestaurants = toJS(props.store.restaurants.best_rated_restaurant)?.filter(r => r.restaurant.id === history.location.state.resId);
+      const selectedRestaurant = Array.isArray(selectedRestaurants) ? selectedRestaurants[0].restaurant : undefined;
+    
     return (
         <div className = "GoogleMaps">
 
-            <h2>{toJS(props.store.restaurants).popularity}Location</h2>
+            <h2>{selectedRestaurant ? selectedRestaurant.name + " Coordinates": "No Data"}</h2>
         </div>
     )
 });

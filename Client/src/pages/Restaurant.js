@@ -107,15 +107,6 @@ const Restaurant = observer((props) => {
         },
     ];
 
-
-    /*if (globalState.error) {
-        return (
-            <div className="Error">
-                <h2>{history.push("/Error")}</h2>
-            </div>
-        )
-    }*/
-
     return (
         <div className="Restaurants">
             <h2>Search for restaurants by location id</h2>
@@ -123,9 +114,9 @@ const Restaurant = observer((props) => {
                 /* returns a promise of id, from the API being fetched*/
                 onSearch={async (id) => {
                     /* awaits for the id data to be called */
-                    let restaurants_data = await getRestaurantsFromAPI(id).catch((e) =>
+                    let restaurants_data = await getRestaurantsFromAPI(id).catch(() =>
                         //globalState.error = e
-                        console.log('ree.')
+                        console.log('an error has occured')
                         );
                     /* error handling conditions */
                     if (id === "") {
@@ -152,7 +143,8 @@ const Restaurant = observer((props) => {
                     columnDefs={restaurants_body}
                     rowData={restaurants_list}
                     onRowClicked={row => history.push(`/Maps`, {
-                        name: row.data.name
+                        name: row.data.name,
+                        resId: row.data.id,
                     })}
                     pagination={true}
                     paginationPageSize={50}
