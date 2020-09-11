@@ -1,78 +1,48 @@
 import React, { useState } from "react";
-import {GoogleMap, LoadScript} from "@react-google-maps/api";
-import { useParams, useHistory } from "react-router-dom";
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from "react-google-maps"
+import { useHistory } from "react-router-dom";
 
 //MOBX
-import {toJS} from 'mobx';
+import { toJS } from 'mobx';
 import { observer } from "mobx-react";
 
-async function getRestaruantMapFromAPI(name, city) {
-  
-  const url = `http://localhost:3000/place/${name} in ${city}`;
-
-  let restaurant = await fetch(url, {
-      method: 'GET',
-      headers: {
-          'Accept': 'application/json'
-      }
-  })
-      .then(res => res.json())
-      .then(response => {
-          return response
-      })
-
-  console.log(restaurant);
-
-  return restaurant;
-}
 const Maps = observer((props) => {
-  const { location } = useParams();
   const history = useHistory();
 
-    const map_body = [
-        {
-          headerName: "Name",
-          field: "name",
-          sortable: true,
-          flex: 1,
-        },
+  const Restaurants = toJS(props.store.restaurants.best_rated_restaurant)?.filter(r => r.restaurant.id === history.location.state.resId);
+  const SelectedRestaurant = Array.isArray(Restaurants) ? Restaurants[0].restaurant : undefined;
+  const MapWithAMarker = withScriptjs(withGoogleMap(props =>
+    <GoogleMap
+      defaultZoom={8}
+      defaultCenter={{ lat: SelectedRestaurant.location.latitude, lng: SelectedRestaurant.location.longitude }}
+    >
+      <Marker
+        position={{ lat: SelectedRestaurant.location.latitude, lng: SelectedRestaurant.location.longitude }}
+      />
+    </GoogleMap>
+  ));
 
-        {
-          headerName: "Latitude",
-          field: "latitude",
-          sortable: true,
-          flex: 1,
-        },
+  return (
+    <div className="GoogleMaps">
 
-        {
-          headerName: "Longitude",
-          field: "longitude",
-          sortable: true,
-          flex: 1,
-        },
-    
-        {
-          headerName: "Address",
-          field: "address",
-          sortable: true,
-          flex: 1,
-        },
-        {
-          headerName: "City",
-          field: "city",
-          sortable: true,
-          flex: 1,
-        },
-      ];
-      const selectedRestaurants = toJS(props.store.restaurants.best_rated_restaurant)?.filter(r => r.restaurant.id === history.location.state.resId);
-      const selectedRestaurant = Array.isArray(selectedRestaurants) ? selectedRestaurants[0].restaurant : undefined;
-    
-    return (
-        <div className = "GoogleMaps">
+      <h2>{SelectedRestaurant ? SelectedRestaurant.name + " Coordinates" : "No Data"}</h2>
 
-            <h2>{selectedRestaurant ? selectedRestaurant.name + " Coordinates": "No Data"}</h2>
-        </div>
-    )
+      
+      <MapWithAMarker
+        googleMapURL={`http://localhost:3000/place/${SelectedRestaurant.name} in ${SelectedRestaurant.location.city}`}
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `400px` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
+
+
+    </div>
+  )
 });
 
 export default Maps;

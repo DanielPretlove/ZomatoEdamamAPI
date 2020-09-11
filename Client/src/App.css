@@ -125,9 +125,14 @@ h2 {
 }
 .Restaurants .ag-row  {
   background-color: rgb(17, 17, 17) !important;
-  -webkit-text-fill-color: rgb(197, 194, 194) !important;
+  -webkit-text-fill-color: rgb(197, 194, 194);
+  cursor: pointer;
 }
 
+.Restaurants .ag-header-row {
+  background-color: rgb(17, 17, 17) !important;
+  cursor: zoom-in !important;
+}
 
 /*  ag-layout-normal ag-overlay-loading-wrapper*/
 .Restaurants .ag-paging-panel {
@@ -137,12 +142,12 @@ h2 {
 }
 
 .ag-overlay-wrapper {
-  background-color: rgb(17, 17, 17) !important;
-  -webkit-text-fill-color: rgb(197, 194, 194) !important;
+  background-color: rgb(17, 17, 17);
+  -webkit-text-fill-color: rgb(197, 194, 194);
 }
 
 .ag-overlay-loading-center {
-  background-color: rgb(17, 17, 17) !important;
+  background-color: rgb(17, 17, 17);
 }
 
 .GoogleMaps h2 {

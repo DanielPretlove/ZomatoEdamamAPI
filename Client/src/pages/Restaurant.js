@@ -145,6 +145,9 @@ const Restaurant = observer((props) => {
                     onRowClicked={row => history.push(`/Maps`, {
                         name: row.data.name,
                         resId: row.data.id,
+                        city: row.data.location.city,
+                        latitude: row.data.location.latitude,
+                        longitude: row.data.location.longitude
                     })}
                     pagination={true}
                     paginationPageSize={50}
