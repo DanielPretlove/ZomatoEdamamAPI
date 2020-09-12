@@ -5,19 +5,20 @@ import { observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import Axios from "axios";
 
+
+/* gets the zomato endpoint from the server */
 export async function getRestaurantsFromAPI(id) {
 
     const url = `http://localhost:3000/location_details/${id}/city`;
 
-    let restaurant = await Axios.get(url, {
+    let restaurant = await fetch(url, {
         method: 'GET',
         headers: {
             'Accept': 'application/json'
         }
     })
-        .then(res => res.data)
+        .then(res => res.json())
         .then(response => {
             return response
         })
@@ -26,7 +27,7 @@ export async function getRestaurantsFromAPI(id) {
     return restaurant;
 }
 
-
+/* searches for the city_id when onSearch */
 function Searchbar(props) {
     const [innerSearch, setInnerSearch] = useState("");
     return (
@@ -67,8 +68,6 @@ function Searchbar(props) {
 const Restaurant = observer((props) => {
     const history = useHistory();
     const [restaurants_list, setRestaruant] = useState([]);
-    const [error, setError] = useState("");
-    //var restaurants_list = useState("")
     const restaurants_body = [
         {
             headerName: "Restaurant ID",
@@ -85,7 +84,7 @@ const Restaurant = observer((props) => {
         },
         {
             headerName: "Latitude",
-            field: "latitude",
+            field: "location.latitude",
             flex: 1,
             sortable: true,
         },
@@ -117,25 +116,15 @@ const Restaurant = observer((props) => {
                 onSearch={async (id) => {
                     /* awaits for the id data to be called */
                     let restaurants_data = await getRestaurantsFromAPI(id).catch(() =>
-                        //globalState.error = e
-                            setError("FUCK")
+                            history.push('/Error')
                         );
                     /* error handling conditions */
-                    if (id === "") {
-                        //globalState.error = "The ID is empty";
-                        console.log('ID IS EMPTY');
-                    }
-
-                    else {
                         props.store.restaurants = restaurants_data;
-                        //globalState.restaurants = restaurants_data;
-                    
                         const tempData = toJS(props.store.restaurants)?.best_rated_restaurant?.map((rest) => {
                             return rest.restaurant;
                         });
 
                         setRestaruant(tempData);
-                    }
                 }}
             />
             <h2>List of Restaurants</h2>
@@ -148,6 +137,7 @@ const Restaurant = observer((props) => {
                         name: row.data.name,
                         resId: row.data.id,
                         city: row.data.location.city,
+                        address: row.data.location.address,
                         latitude: row.data.location.latitude,
                         longitude: row.data.location.longitude
                     })}

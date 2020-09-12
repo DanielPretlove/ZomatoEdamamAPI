@@ -7,10 +7,8 @@ const cors = require('cors');
 const app = express();
 
 
-const GoogleMapsRouter = require('./routes/GoogleMaps');
 const ZomatosRouter = require('./routes/zomato');
 
-app.use('/', GoogleMapsRouter);
 app.use('/', ZomatosRouter);
 
 
