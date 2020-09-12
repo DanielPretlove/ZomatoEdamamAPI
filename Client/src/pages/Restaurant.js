@@ -5,18 +5,19 @@ import { observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import Axios from "axios";
 
 export async function getRestaurantsFromAPI(id) {
 
     const url = `http://localhost:3000/location_details/${id}/city`;
 
-    let restaurant = await fetch(url, {
+    let restaurant = await Axios.get(url, {
         method: 'GET',
         headers: {
             'Accept': 'application/json'
         }
     })
-        .then(res => res.json())
+        .then(res => res.data)
         .then(response => {
             return response
         })
@@ -66,6 +67,7 @@ function Searchbar(props) {
 const Restaurant = observer((props) => {
     const history = useHistory();
     const [restaurants_list, setRestaruant] = useState([]);
+    const [error, setError] = useState("");
     //var restaurants_list = useState("")
     const restaurants_body = [
         {
@@ -116,7 +118,7 @@ const Restaurant = observer((props) => {
                     /* awaits for the id data to be called */
                     let restaurants_data = await getRestaurantsFromAPI(id).catch(() =>
                         //globalState.error = e
-                        console.log('an error has occured')
+                            setError("FUCK")
                         );
                     /* error handling conditions */
                     if (id === "") {
