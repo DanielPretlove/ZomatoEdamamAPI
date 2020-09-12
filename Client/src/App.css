@@ -206,3 +206,8 @@ h2 {
 .Error nav ul li a:hover {
   color: white;
 }
+
+.GoogleMaps h2 {
+  margin: 0;
+  padding: 0;
+}

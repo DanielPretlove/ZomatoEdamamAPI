@@ -12,7 +12,7 @@ router.get('/place/:query', async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
   const query = req.params.query;
 
-  const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${GoogleMapsAPI}`;
+  const url = `https://maps.googleapis.com/maps/api/js?query=${query}&key={GoogleMapsAPI}`
 
   const getPlaceData = async () => {
     try {
