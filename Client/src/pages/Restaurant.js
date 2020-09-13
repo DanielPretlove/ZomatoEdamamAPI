@@ -10,7 +10,7 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 /* gets the zomato endpoint from the server */
 export async function getRestaurantsFromAPI(id) {
 
-    const url = `http://localhost:3000/location_details/${id}/city`;
+    const url = "http://" + window.location.hostname + `:3000/location_details${id}/city`;
 
     let restaurant = await fetch(url, {
         method: 'GET',
