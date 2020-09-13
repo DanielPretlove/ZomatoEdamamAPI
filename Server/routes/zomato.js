@@ -6,7 +6,7 @@ const axios = require("axios");
 const Zomato_APIKEY = `272bae557b31afdb9c6309157bbe91d4`;
 
 router.get('/location_details/:id/city', async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.setHeader("Access-Control-Allow-Origin", "*");
 
   const id = req.params.id;
   const url = `https://developers.zomato.com/api/v2.1/location_details?entity_id=${id}&entity_type=city`;
@@ -34,6 +34,7 @@ router.get('/location_details/:id/city', async (req, res) => {
         message: "Unable to obtain a restaurant in city",
       })
     })
+    return data;
 })
 
 
