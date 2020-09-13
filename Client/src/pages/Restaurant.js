@@ -133,6 +133,7 @@ const Restaurant = observer((props) => {
                     suppressLoadingOverlay={true}
                     columnDefs={restaurants_body}
                     rowData={restaurants_list}
+                    /* the map page is able to use these json data with a global state */
                     onRowClicked={row => history.push(`/Maps`, {
                         name: row.data.name,
                         resId: row.data.id,

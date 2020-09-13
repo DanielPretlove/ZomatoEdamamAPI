@@ -2,13 +2,15 @@ import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import { toJS } from 'mobx';
 import { observer } from "mobx-react";
+import { useHistory } from 'react-router-dom';
+import MapStyles from './MapStyles';
 const API_KEY = 'AIzaSyDb1D4RL292JnliF9H5BfR7TxTtN1XZIxo';
 
 
 const Maps = observer((props) => {
-
-  /* gets the SelectedRestaurant data and be able to use it anyway you desire*/
-  const Restaurants = toJS(props.store.restaurants.best_rated_restaurant);
+  const history = useHistory();
+  /* gets the SelectedRestaurant and filter it by the restaurant id for you to get the restaurant you have selected */
+  const Restaurants = toJS(props.store.restaurants.best_rated_restaurant)?.filter(r => r.restaurant.id === history.location.state.resId);
   const SelectedRestaurant = Array.isArray(Restaurants) ? Restaurants[0].restaurant : undefined;
 
   /* import the google maps api and searches for the location with the latitude and longitude destinations*/
@@ -16,6 +18,7 @@ const Maps = observer((props) => {
     <GoogleMap
 
       defaultOptions={{
+        styles: MapStyles,
         disableDefaultUI: true,
         zoomControl: true,
         fullscreenControl: true,
