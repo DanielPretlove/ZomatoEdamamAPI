@@ -10,7 +10,7 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 /* gets the zomato endpoint from the server */
 export async function getRestaurantsFromAPI(id) {
 
-    const url = "http://" + window.location.hostname + `:3000/location_details${id}/city`;
+    const url = "http://" + window.location.hostname + `:3000/location_details/${id}/city`;
 
     let restaurant = await fetch(url, {
         method: 'GET',
@@ -23,13 +23,13 @@ export async function getRestaurantsFromAPI(id) {
             return response
         })
 
-
     return restaurant;
 }
 
 /* searches for the city_id when onSearch */
 function Searchbar(props) {
     const [innerSearch, setInnerSearch] = useState("");
+
     return (
         <div>
             <div className="Search">
@@ -48,6 +48,9 @@ function Searchbar(props) {
                     if (innerSearch !== "") {
                         await props.onSearch(innerSearch);
                     }
+
+                   
+ 
                 }}>Search</button>
                 <button onClick={() => {
                     if (innerSearch !== "") {
@@ -68,6 +71,7 @@ function Searchbar(props) {
 const Restaurant = observer((props) => {
     const history = useHistory();
     const [restaurants_list, setRestaruant] = useState([]);
+    
     const restaurants_body = [
         {
             headerName: "Restaurant ID",
@@ -118,6 +122,7 @@ const Restaurant = observer((props) => {
                     let restaurants_data = await getRestaurantsFromAPI(id).catch(() =>
                             history.push('/Error')
                         );
+               
                     /* error handling conditions */
                         props.store.restaurants = restaurants_data;
                         const tempData = toJS(props.store.restaurants)?.best_rated_restaurant?.map((rest) => {
@@ -125,6 +130,11 @@ const Restaurant = observer((props) => {
                         });
 
                         setRestaruant(tempData);
+
+                        if(!tempData) {
+                            history.push('/Error')
+                        }
+                       
                 }}
             />
             <h2>List of Restaurants</h2>
